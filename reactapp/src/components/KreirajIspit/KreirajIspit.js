@@ -9,7 +9,7 @@ class KreirajIspit extends Component{
         <div className='row'>
             
             <div className='col-3'>
-                
+              <button type="button" class="btn btn-primary">Nazad</button>
             </div> 
             <div className='col-3'>
                 
