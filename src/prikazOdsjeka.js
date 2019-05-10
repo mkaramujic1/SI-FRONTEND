@@ -1,19 +1,20 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
-class prikazOdsjeka extends Component{
 
+class prikazOdsjeka extends Component{
     constructor(props) {
         super(props)
 
         this.state = {
-          lista: []
+          lista: [], 
+          selectedValue: ''
         }
     }
 
     componentDidMount(){
 
-        //Promijeni URL
+        //Promijeniti URL
         axios.get ('https://jsonplaceholder.typicode.com/posts')
         .then(response => {
             console.log("Lista: ", response.data);
@@ -24,19 +25,23 @@ class prikazOdsjeka extends Component{
         })
     }
 
+    onChange = (e) => {
+        this.setState({selectedValue: e.target.value})
+    }
+
     render (){
-        const {lista}=this.state
+        const {lista, selectedValue}=this.state
         return (
             <div className="col-md-2">
             <br />
                 <p>Prikaz svih odsjeka: </p><br />
-                <select className="custom-select">
+                <select className="custom-select" value={selectedValue} onChange={this.onChange}> 
                 {
                     //paziti sta se prikazuje, nece biti list.title!!!
-                    lista.length? lista.map(list => <option key={list.id}>{list.title}</option>): null
+                    //ako je length!=0 prikazati listu, u suprotnom vratiti null
+                    lista.length ? lista.map(list => <option key={list.id}>{list.title}</option>): null
                 }
                 </select><br /><br />
-
                 
                 <input type="submit" value="Edit" className="btn btn-success btn-block" />
             </div>
@@ -45,4 +50,3 @@ class prikazOdsjeka extends Component{
 }
 
 export default prikazOdsjeka
-//<select className="custom-select" key={list.id}>
