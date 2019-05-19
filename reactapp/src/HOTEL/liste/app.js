@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './stil.css';
 import MojeAnkete from './mojeAnkete'
-import PopunjeneAnkete from './popunjeneAnkete'
+import PopunjeneAnketeAdmin from './popunjeneAnketeAdmin'
 import JavneAnkete from './javneAnkete'
-import AnketePoPredmetima from './anketePoPredmetima'
-import RezultatiAnketa from './rezultatiAnketa'
-import SveAnkete from './sveAnkete'
+import AnketePoPredmetimaProf from './anketePoPredmetimaProf'
+import RezultatiAnketaKorisnik from './rezultatiAnketaKorisnik'
+import SveAnketeSviPredmetiAdmin from './sveAnketeSviPredmetiAdmin'
+import PopunjeneAnketeProf from './popunjeneAnketeProf'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 class App extends Component {
@@ -14,17 +15,16 @@ class App extends Component {
       <div className="App">
       <Router>
         <div>
-          <Route exact path ="/hotel/liste" component={MojeAnkete} />
+          <Route exact path ="/hotel/liste" component={MojeAnkete} /> 
           <Route path="/hotel/liste/mojeAnkete" component={MojeAnkete}/>
-          <Route path="/hotel/liste/popunjeneAnkete" component={PopunjeneAnkete}/>
+          <Route path="/hotel/liste/popunjeneAnketeAdmin" component={PopunjeneAnketeAdmin}/>
           <Route path="/hotel/liste/javneAnkete" component={JavneAnkete}/>
-          <Route path="/hotel/liste/anketePoPredmetima" component={AnketePoPredmetima}/>
-          <Route path="/hotel/liste/rezultatiAnketa" component={RezultatiAnketa}/>
-          <Route path="/hotel/liste/sveAnkete" component={SveAnkete}/>
+          <Route path="/hotel/liste/anketePoPredmetimaProf" component={AnketePoPredmetimaProf}/>
+          <Route path="/hotel/liste/rezultatiAnketaKorisnik" component={RezultatiAnketaKorisnik}/>
+          <Route path="/hotel/liste/sveAnketeSviPredmetiAdmin" component={SveAnketeSviPredmetiAdmin}/>
+          <Route path="/hotel/liste/popunjeneAnketeProf" component={PopunjeneAnketeProf}/>
           </div>
         </Router>
-
-        
       </div>
     );
   }

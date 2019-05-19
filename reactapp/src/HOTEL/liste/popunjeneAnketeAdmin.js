@@ -11,23 +11,23 @@ class App extends React.Component {
     render() {
         const items = this.state.items
         return (
-            <div>          
-            <nav class="NavPadding" >
-                <h2 id="top">REZULTATI ANKETA</h2>
+            <div>
+                <nav class="NavPadding">
+                <h2 id="top">POPUNJENE ANKETE</h2>
                 <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
             </nav>
 
             <br></br>
-                <table class="anketeTabela" align="center">
-                    <tr>
-                    <td>NAZIV ANKETE</td>
-                    <td>OPIS</td>
-                    <td>DATUM ISTEKA</td>
-                    <td>PRIKAZ ANKETE</td>
-                    <td>UREDI</td>
-                    <td>OBRIŠI</td>
-                    </tr>
-            
+
+            <table class="anketeTabela" align="center">
+                <tr>
+                <td>NAZIV ANKETE</td>
+                <td>OPIS</td>
+                <td>DATUM ISTEKA</td>
+                <td>PRIKAZ ANKETE</td>
+                <td>UREDI</td>
+                <td>OBRIŠI</td>
+                </tr>
 
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
@@ -45,7 +45,7 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajSveAnketeZaKojePostojeRezultati?idUloga=1', {
+        fetch(url + '/dajPopunjeneAnketeZaPredmet', {
             method: 'GET'
         })
         .then(res => res.json())

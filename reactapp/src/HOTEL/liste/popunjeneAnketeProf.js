@@ -13,25 +13,29 @@ class App extends React.Component {
         return (
             <div>
                 <nav class="NavPadding">
-                <h2 id="top">POPUNJENE ANKETE</h2>
+                <h2 id="top">POPUNJENE ANKETE NA MOJIM PREDMETIMA</h2>
                 <div class="collapse navbar-collapse" id="navbarAnkete"> </div>
             </nav>
 
             <br></br>
 
-            <table class="anketeTabela" align="center">
-                <tr>
-                <td>NAZIV ANKETE</td>
-                <td>PRIKAZ ANKETE</td>
-                <td>UREDI</td>
-                <td>OBRIŠI</td>
-                </tr>
-
+            <table className="anketeTabela" align="center">
+                    <tr>
+                    <td>NAZIV ANKETE</td>
+                    <td>OPIS</td>
+                    <td>DATUM ISTEKA</td>
+                    <td>PRIKAZ ANKETE</td>
+                    <td>UREDI</td>
+                    <td>OBRIŠI</td>
+                    </tr>
                 {items.ankete ? items.ankete.map(anketa => (
                     <tr>
-                    <th>{anketa.naziv}</th><th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
-                    <th><button type="button" class="btn btn-primary disabled" id="obrisiButton">OBRIŠI</button></th>
+                        <th>{anketa.naziv}</th>
+                        <th>{anketa.opis}</th>
+                        <th>{anketa.datumIstekaAnkete.substr(0,10)}</th>
+                        <th><button type="button" class="btn btn-primary disabled" id="prikaziButton">PRIKAŽI</button></th>
+                        <th><button type="button" class="btn btn-primary disabled" id="urediButton">UREDI</button></th>
+                        <th><button type="button" class="btn btn-primary disabled" id="obrisiButton">OBRIŠI</button></th>
                     </tr>
                 )) : "Loading..."}
                 </table>
@@ -40,7 +44,7 @@ class App extends React.Component {
         )
     }
     componentDidMount() { 
-        fetch(url + '/dajPopunjeneAnketeZaPredmet', {
+        fetch(url + '/dajListuPopunjenihAnketaNaMojimPredmetima?idProfesora=235', {
             method: 'GET'
         })
         .then(res => res.json())
