@@ -15,6 +15,7 @@ class prikazOdsjeka extends Component{
     componentDidMount(){
 
         //Promijeniti URL
+        //http://localhost:31901/api/odsjek/GetOdsjeci
         axios.get ('https://jsonplaceholder.typicode.com/posts')
         .then(response => {
             console.log("Lista: ", response.data);
@@ -32,16 +33,30 @@ class prikazOdsjeka extends Component{
     render (){
         const {lista, selectedValue}=this.state
         return (
-            <div className="col-md-2">
+            <div className="col-md-6">
             <br />
                 <p>Prikaz svih odsjeka: </p><br />
-                <select className="custom-select" value={selectedValue} onChange={this.onChange}> 
-                {
-                    //paziti sta se prikazuje, nece biti list.title!!!
-                    //ako je length!=0 prikazati listu, u suprotnom vratiti null
-                    lista.length ? lista.map(list => <option key={list.id}>{list.title}</option>): null
-                }
-                </select><br /><br />
+                <table >
+                    <thead className="table table-sm table-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>NAZIV</th>
+                        </tr>
+                    </thead>
+                    <tbody className="table table-sm table-light">
+                        {
+                            //paziti sta se prikazuje, nece biti list.title!!!
+                            //ako je length!=0 prikazati listu, u suprotnom vratiti null
+                            //PARAMETRI: list.idOdsjek, list.naziv
+                            lista.length ? lista.map(list => 
+                                <tr key={list.id}>
+                                    <th>{list.id}</th>
+                                    <th>{list.title}</th>
+                                </tr>
+                            ): null
+                        }
+                    </tbody>
+                </table><br /><br />
                 
                 <input type="submit" value="Edit" className="btn btn-success btn-block" />
             </div>
@@ -49,4 +64,11 @@ class prikazOdsjeka extends Component{
     }
 }
 
+/*<select className="custom-select" value={selectedValue} onChange={this.onChange}> 
+                {
+                    //paziti sta se prikazuje, nece biti list.title!!!
+                    //ako je length!=0 prikazati listu, u suprotnom vratiti null
+                    lista.length ? lista.map(list => <option key={list.id}>{list.title}</option>): null
+                }
+                </select><br /><br /> */
 export default prikazOdsjeka
