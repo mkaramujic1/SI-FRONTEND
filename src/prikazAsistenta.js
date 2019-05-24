@@ -48,30 +48,44 @@ class prikazAsistenta extends Component{
             <br />
               
                 
-                <table className="table table-sm table-primary"> 
-                <tr>
-                    <th >ID</th>
-                    <th >IME</th>
-                    <th >PREZIME</th>
-                    <th >IME RODITELJA</th>
-                    <th >SPOL</th>
-                    <th >JMBG</th>
-                    <th >DATUM ROĐENJA</th>
-                    <th >MJESTO ROĐENJA</th>
-                    <th >KANTON</th>
-                    <th >DRŽAVLJANSTVO</th>
-                    <th >EMAIL</th>
-                    <th >TELEFON</th>
-                </tr>
+              <table> 
+                <thead className="table table-sm table-primary">
+                  <tr>
+                      <th >ID</th>
+                      <th >IME</th>
+                      <th >PREZIME</th>
+                      <th >IME RODITELJA</th>
+                      <th >SPOL</th>
+                      <th >JMBG</th>
+                      <th >DATUM ROĐENJA</th>
+                      <th >MJESTO ROĐENJA</th>
+                      <th >KANTON</th>
+                      <th >DRŽAVLJANSTVO</th>
+                      <th >EMAIL</th>
+                      <th >TELEFON</th>
+                      <th >USERNAME</th>
+                      <th >TITULA</th>
+                      <th >WEBSITE</th>
+                  </tr>
+                </thead>
+                <tbody className="table table-sm table-light">
                 {
                     //paziti sta se prikazuje, nece biti list.title!!!
                     //ako je length!=0 prikazati listu, u suprotnom vratiti null
+                    //PARAMETRI: id, ime, prezime, datumRodjenja, JMBG, email, mjestoRodjenja, kanton, drzavljanstvo, telefon, spol, imePrezimeMajke, imePrezimeOca, adresa, username, linkedin, titula, website
                 
                     lista.length ? lista.map(list => 
                         <tr key={list.id}>
                             <th><input className="form-control" type="text"  readOnly value={list.id}></input></th>
                             <th><input className="form-control" type="text" value={list.body} onChange={this.handleChange}></input></th>
-                            <th><input className="form-control" type="text" value={list.title} onChange={this.handleChange}></input></th>
+                            <th>
+                             { /*<input className="form-control" type="text" value={list.title} onChange={this.handleChange}></input><br/>*/}
+                              {list.title}<br/>
+                              {list.id}
+                            </th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
+                            <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
                             <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
                             <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
                             <th><input className="form-control" type="text" value={''} onChange={this.handleChange}></input></th>
@@ -84,7 +98,8 @@ class prikazAsistenta extends Component{
                         </tr>)
                     : null
                 }
-                </table><br /><br />
+                </tbody>
+              </table><br /><br />
               
             </div>
         );
