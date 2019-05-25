@@ -15,8 +15,6 @@ class prikazOdsjeka extends Component{
     componentDidMount(search){
 
         if(search==''){
-            //Promijeniti URL
-            //http://localhost:31901/api/odsjek/GetOdsjeci
             axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
             .then(response => {
                 console.log("Lista: ", response.data);
@@ -34,14 +32,13 @@ class prikazOdsjeka extends Component{
             })
             . catch (error =>{
                 console.log(error)
-                alert("NEMA");
             })
         }
     }
 
     handleChange = (e) =>{
         this.setState({
-          search:e.target.value
+          search: e.target.value
         }) 
     }
 
