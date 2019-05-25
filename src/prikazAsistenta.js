@@ -5,7 +5,6 @@ class prikazAsistenta extends Component{
     constructor(props) {
         super(props)
 
-       // this.call=this.call.bind(this);
         this.state = {
           lista: [], 
           search: ''
@@ -40,13 +39,13 @@ class prikazAsistenta extends Component{
 
     render (){
         const {lista, search}=this.state
-        console.log("LISTA", lista);
+        console.log("LISTA", lista.length);
         return (
             <div>
-               <br /> 
-              <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange}></input>  <br />
-              <button className="btn btn-success btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Search</button>
-            <br />
+              <br /> 
+                <input type="text" className="form-control col-md-2" value={search} onChange={this.handleChange}></input>  <br />
+                <button className="btn btn-success btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Search</button>
+              <br />
               
                 
               <table>  
@@ -71,10 +70,6 @@ class prikazAsistenta extends Component{
                 </thead>
                 <tbody className="table table-sm table-light">
                 {
-                    //paziti sta se prikazuje, nece biti list.title!!!
-                    //ako je length!=0 prikazati listu, u suprotnom vratiti null
-                    //PARAMETRI: id, ime, prezime, datumRodjenja, JMBG, email, mjestoRodjenja, kanton, drzavljanstvo, telefon, spol, imePrezimeMajke, imePrezimeOca, adresa, username, linkedin, titula, website
-                
                     lista.length ? lista.map(list => 
                         <tr key={list.id}>
                             <th>{list.id}</th>
