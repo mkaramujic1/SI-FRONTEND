@@ -13,7 +13,7 @@ class prikazOdsjeka extends Component{
     }
 
     componentDidMount(search){
-
+console.log("S",search);
         if(search==''){
             axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
             .then(response => {
@@ -25,7 +25,7 @@ class prikazOdsjeka extends Component{
             })
         }
         else{
-            axios.get ('http://localhost:31901/api/odsjek/GetOdsjek?id='+search)
+            axios.get ('http://localhost:31901/api/odsjek/GetOdsjek?naziv='+search)
             .then(response => {
                 console.log("Lista: ", response.data);
                 this.setState({lista: response.data});
@@ -42,9 +42,20 @@ class prikazOdsjeka extends Component{
         }) 
     }
 
+    obrisi(naziv){
+        console.log(naziv);
+        axios.delete("http://localhost:31901/api/odsjek/DeleteOdsjek?naziv="+naziv)
+        .then(response => {
+            console.log(response);    
+        })
+        . catch (error =>{
+            console.log("Error", error)
+        })
+    }
+
     render (){
         const {lista, search}=this.state
-        console.log("l ",lista.length);
+        console.log("l ",lista);
         return (
             <div className="col-md-7">
                 <br /> 
@@ -58,6 +69,7 @@ class prikazOdsjeka extends Component{
                         <tr>
                             <th>ID</th>
                             <th>NAZIV</th>
+                            <th>OBRIŠI</th>
                         </tr>
                     </thead>
                     <tbody className="table table-sm table-light">
@@ -66,6 +78,7 @@ class prikazOdsjeka extends Component{
                                 <tr key={list.idOdsjek}>
                                     <th>{list.idOdsjek}</th>
                                     <th>{list.naziv}</th>
+                                    <th><button className="btn btn-success btn-block"  onClick={()=>this.obrisi(list.naziv)}>Delete</button></th>
                                 </tr>
                             ): null
                         }
