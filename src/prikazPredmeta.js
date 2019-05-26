@@ -14,6 +14,7 @@ class prikazAsistenta extends Component{
    
 
     componentDidMount(param){
+      console.log(param);
       var xhttp = new XMLHttpRequest();
       var self = this;
       
@@ -37,9 +38,20 @@ class prikazAsistenta extends Component{
       }) 
     }
 
+    obrisi(naziv){
+        console.log(naziv);
+        axios.delete("http://localhost:31901/api/predmet/deleteSubject?naziv="+naziv)
+        .then(response => {
+            console.log(response);    
+        })
+        . catch (error =>{
+            console.log("Error", error)
+        })
+    }
+
     render (){
         const {lista, search}=this.state
-        console.log("LISTA", lista.length);
+        console.log("LISTA", lista);
         return (
             <div>
               <br /> 
@@ -47,7 +59,6 @@ class prikazAsistenta extends Component{
                 <button className="btn btn-success btn-block col-md-2" onClick={()=> this.componentDidMount(search)}>Search</button>
               <br />
               
-              {"id":6,"idAsistent":237,"idProfesor":247,"naziv":"IEK","ects":5,"brojPredavanja":30,"brojVjezbi":30,"opis":""
               <table>  
                 <thead className="table table-sm table-primary">
                   <tr>
@@ -59,6 +70,7 @@ class prikazAsistenta extends Component{
                       <th >OPIS</th>
                       <th >ID PROFESORA</th>
                       <th >ID ASISTENTA</th>
+                      <th>OBRIŠI</th>
                   </tr>
                 </thead>
                 <tbody className="table table-sm table-light">
@@ -73,6 +85,7 @@ class prikazAsistenta extends Component{
                             <th>{list.opis}</th>
                             <th>{list.idProfesor}</th>
                             <th>{list.idAsistent}</th>
+                            <th><button className="btn btn-success btn-block"  onClick={()=>this.obrisi(list.naziv)}>Delete</button></th>
                         </tr>)
                     : null
                 }
