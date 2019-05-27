@@ -13,7 +13,6 @@ class prikazOdsjeka extends Component{
     }
 
     componentDidMount(search){
-console.log("S",search);
         if(search==''){
             axios.get ('http://localhost:31901/api/odsjek/GetOdsjeci')
             .then(response => {
@@ -28,7 +27,7 @@ console.log("S",search);
             axios.get ('http://localhost:31901/api/odsjek/GetOdsjek?naziv='+search)
             .then(response => {
                 console.log("Lista: ", response.data);
-                this.setState({lista: response.data});
+                this.setState({lista: [response.data]});
             })
             . catch (error =>{
                 console.log(error)
@@ -55,7 +54,7 @@ console.log("S",search);
 
     render (){
         const {lista, search}=this.state
-        console.log("l ",lista);
+        console.log("l",lista);
         return (
             <div className="col-md-7">
                 <br /> 
