@@ -13,28 +13,32 @@ class prikazAsistenta extends Component{
 
    
 
-    componentDidMount(param){
-      console.log(param);
-      var xhttp = new XMLHttpRequest();
-      var self = this;
-      
-     xhttp.onreadystatechange = function(){
-        if (xhttp.readyState == 4 && xhttp.status == 200){
-            self.setState({
-            lista: JSON.parse(this.response)
-          });
-        }
+    componentDidMount(search){
+      if(search==''){
+        axios.get ('http://localhost:31901/api/predmet/GetPredmeti')
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({lista: response.data});
+        })
+        . catch (error =>{
+            console.log(error)
+        })
       }
-    
-     if(param!='') xhttp.open("get", "http://localhost:31901/api/predmet/GetPredmet?naziv="+param, true);
-     else xhttp.open("get", "http://localhost:31901/api/predmet/GetPredmeti", true);
-     
-      xhttp.send();
+      else{
+        axios.get ('http://localhost:31901/api/predmet/GetPredmet?naziv='+search)
+        .then(response => {
+            console.log("Lista: ", response.data);
+            this.setState({lista: [response.data]});
+        })
+        . catch (error =>{
+            console.log(error)
+        })
+      }
     }
 
     handleChange = (e) =>{
       this.setState({
-        search:e.target.value
+        search: e.target.value
       }) 
     }
 
